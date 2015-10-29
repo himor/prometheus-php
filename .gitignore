@@ -1,2 +1,5 @@
 metrics.proto
 vendor
+.idea
+composer.phar
+

@@ -1,27 +1,28 @@
 <?php
-require_once 'vendor/autoload.php';
+
+require_once '../vendor/autoload.php';
 
 $client = new Prometheus\Client([
-	'base_uri' => 'http://condor.louddev.com:9091',
+    'base_uri' => 'http://192.168.229.173:9091',
 ]);
 
 $counter = $client->newCounter([
-	'namespace' => 'louddoor',
-	'subsystem' => 'promotions',
-	'name' => 'TestCounter',
-	'help' => 'Some testing bullshit',
+    'namespace' => 'viacom',
+    'subsystem' => 'prometheus',
+    'name'      => 'count',
+    'help'      => 'Counting some numbers',
 ]);
 
-$counter->increment(['promo' => 1]);
-$counter->increment(['promo' => 1]);
-$counter->increment(['promo' => 1]);
-$counter->increment(['promo' => 1]);
+$counter->increment(['fail' => 1]);
+$counter->increment(['fail' => 1]);
+$counter->increment(['fail' => 1]);
+$counter->increment(['fail' => 1]);
 
-$counter->increment(['promo' => 2]);
-$counter->increment(['promo' => 2]);
+$counter->increment(['happy' => 2]);
+$counter->increment(['happy' => 2]);
 
-$counter->increment(['promo' => 3]);
-$counter->increment(['promo' => 4]);
+$counter->increment(['lock' => 3]);
+$counter->increment(['lock' => 4]);
 
 $client->sendStats();
 
